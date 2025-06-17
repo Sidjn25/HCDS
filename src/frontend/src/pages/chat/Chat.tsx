@@ -1,3 +1,4 @@
+
 import { useRef, useState, useEffect } from "react";
 import { Panel, DefaultButton, TextField, SpinButton, Slider, Checkbox } from "@fluentui/react";
 import { SparkleFilled } from "@fluentui/react-icons";
@@ -9,12 +10,11 @@ import { AIChatProtocolClient, AIChatMessage } from "@microsoft/ai-chat-protocol
 import { Answer, AnswerError, AnswerLoading } from "../../components/Answer";
 import { QuestionInput } from "../../components/QuestionInput";
 import { ExampleList } from "../../components/Example";
+import VoiceInput from "../../components/VoiceInput";
 import { UserChatMessage } from "../../components/UserChatMessage";
 import { AnalysisPanel, AnalysisPanelTabs } from "../../components/AnalysisPanel";
-import { SettingsButton } from "../../components/SettingsButton";
 import { ClearChatButton } from "../../components/ClearChatButton";
 import { VectorSettings } from "../../components/VectorSettings";
-
 const Chat = () => {
     const [isConfigPanelOpen, setIsConfigPanelOpen] = useState(false);
     const [promptTemplate, setPromptTemplate] = useState<string>("");
@@ -194,15 +194,19 @@ const Chat = () => {
         <div className={styles.container}>
             <div className={styles.commandsContainer}>
                 <ClearChatButton className={styles.commandButton} onClick={clearChat} disabled={!lastQuestionRef.current || isLoading} />
-                <SettingsButton className={styles.commandButton} onClick={() => setIsConfigPanelOpen(!isConfigPanelOpen)} />
+                 
             </div>
             <div className={styles.chatRoot}>
                 <div className={styles.chatContainer}>
                     {!lastQuestionRef.current ? (
                         <div className={styles.chatEmptyState}>
-                            <SparkleFilled fontSize={"120px"} primaryFill={"rgba(115, 118, 225, 1)"} aria-hidden="true" aria-label="Chat logo" />
-                            <h1 className={styles.chatEmptyStateTitle}>Product chat</h1>
-                            <h2 className={styles.chatEmptyStateSubtitle}>Ask anything or try an example</h2>
+                            <img
+                              src="https://www.hcdstech.in/images/0/15099047/logo00001-myhcds.gif"
+                              alt="HCDS Logo"
+                              style={{ width: "220px", height: "220px", objectFit: "contain" }}
+                            />
+                            <h1 className={styles.chatEmptyStateTitle}>Welcome To HCDS Technologies</h1>
+                            <h2 className={styles.chatEmptyStateSubtitle}></h2>
                             <ExampleList onExampleClicked={onExampleClicked} />
                         </div>
                     ) : (
@@ -263,12 +267,13 @@ const Chat = () => {
                         </div>
                     )}
 
-                    <div className={styles.chatInput}>
+                    <div className={styles.chatInput} style={{ display: "flex", alignItems: "center" }}>
                         <QuestionInput
                             clearOnSend
-                            placeholder="Type a new question (e.g. does my plan cover annual eye exams?)"
+                            placeholder="How can I help you today?"
                             disabled={isLoading}
                             onSend={question => makeApiRequest(question)}
+                            voiceButton={<VoiceInput onResult={makeApiRequest} />} // Pass VoiceInput here
                         />
                     </div>
                 </div>
