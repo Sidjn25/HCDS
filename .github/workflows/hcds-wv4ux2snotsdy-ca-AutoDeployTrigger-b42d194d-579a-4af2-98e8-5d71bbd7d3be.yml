@@ -5,7 +5,7 @@ on:
   # Automatically trigger it when detected changes in repo
   push:
     branches: 
-      [ main ]
+       - main
     paths:
     - '**'
     - '.github/workflows/hcds-wv4ux2snotsdy-ca-AutoDeployTrigger-b42d194d-579a-4af2-98e8-5d71bbd7d3be.yml'
@@ -34,9 +34,9 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}devcontainer
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
+          appSourcePath: .
+          dockerfilePath: devcontainer/dockerfile
+          
           registryUrl: hcdswv4ux2snotsdyregistry.azurecr.io
           registryUsername: ${{ secrets.HCDSWV4UX2SNOTSDYCA_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.HCDSWV4UX2SNOTSDYCA_REGISTRY_PASSWORD }}
