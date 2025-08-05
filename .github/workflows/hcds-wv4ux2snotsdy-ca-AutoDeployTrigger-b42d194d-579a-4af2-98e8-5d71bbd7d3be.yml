@@ -43,7 +43,6 @@ jobs:
           containerAppName: hcds-wv4ux2snotsdy-ca
           resourceGroup: HCDS-rg
           imageToBuild: hcdswv4ux2snotsdyregistry.azurecr.io/hcds-wv4ux2snotsdy-ca:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
+
 
 
