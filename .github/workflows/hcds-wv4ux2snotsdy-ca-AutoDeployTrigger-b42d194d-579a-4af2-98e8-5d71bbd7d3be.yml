@@ -35,7 +35,7 @@ jobs:
         uses: azure/container-apps-deploy-action@v2
         with:
           appSourcePath: .
-          dockerfilePath: devcontainer/dockerfile
+          dockerfilePath: .devcontainer/Dockerfile
           
           registryUrl: hcdswv4ux2snotsdyregistry.azurecr.io
           registryUsername: ${{ secrets.HCDSWV4UX2SNOTSDYCA_REGISTRY_USERNAME }}
@@ -45,5 +45,6 @@ jobs:
           imageToBuild: hcdswv4ux2snotsdyregistry.azurecr.io/hcds-wv4ux2snotsdy-ca:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
+
 
 
